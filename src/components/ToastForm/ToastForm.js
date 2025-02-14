@@ -26,6 +26,7 @@ function ToastForm({ handleSubmit }) {
     setMessage("");
   }
 
+
   return (
     <form className={styles.controlsWrapper}
       onSubmit={(e) => handleSubmit(e)}
@@ -51,7 +52,10 @@ function ToastForm({ handleSubmit }) {
       <div className={styles.row}>
         <div className={styles.label}>Variant</div>
 
-        {VARIANT_OPTIONS.map((option, index) => (
+        {VARIANT_OPTIONS.map((option, index) => {
+          const capitalizedOption = option.charAt(0).toUpperCase() + option.slice(1);
+          
+          return (
           <div
             key={index}
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
@@ -65,10 +69,10 @@ function ToastForm({ handleSubmit }) {
                 value={option}
                 checked={option === variant}
               />
-              {option}
+              {capitalizedOption}
             </label>
           </div>
-        ))}
+        )})}
       </div>
 
       <div className={styles.row}>
