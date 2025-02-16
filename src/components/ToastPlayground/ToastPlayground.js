@@ -5,7 +5,7 @@ import { ToastContext } from '../ToastProvider/ToastProvider';
 import ToastForm from '../ToastForm/ToastForm';
 
 function ToastPlayground() {
-  const { isVisible, toasts } = React.useContext(ToastContext);
+  const { toasts } = React.useContext(ToastContext);
 
   return (
     <div className={styles.wrapper}>
@@ -16,7 +16,7 @@ function ToastPlayground() {
 
       <ToastForm />
 
-      {isVisible && <ToastShelf toasts={toasts} />}
+      <ToastShelf toasts={toasts} />
     </div>
   );
 }

@@ -20,8 +20,7 @@ function ToastShelf() {
             id={id}
             toastVariant={toastVariant}
             handleDismiss={handleDismiss}
-            message={message}
-          />
+          >{message}</Toast>
         </li>
       ))}
     </ol>

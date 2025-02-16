@@ -7,7 +7,6 @@ function ToastForm({ handleSubmit }) {
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
   const [message, setMessage] = React.useState("");
   const {
-    setIsVisible,
     handleNewToast,
   } = React.useContext(ToastContext);
 
@@ -21,7 +20,6 @@ function ToastForm({ handleSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsVisible(true);
     handleNewToast(variant, message)
     setMessage("");
   }
@@ -67,7 +65,7 @@ function ToastForm({ handleSubmit }) {
                 type="radio"
                 name="variant"
                 value={option}
-                checked={option === variant}
+                checked={option === variant}  
               />
               {capitalizedOption}
             </label>
@@ -82,7 +80,7 @@ function ToastForm({ handleSubmit }) {
           className={`${styles.inputWrapper} ${styles.radioWrapper}`}
         >
           
-          <Button>Pop Toast!</Button>
+          <Button type="submit">Pop Toast!</Button>
         </div>
       </div>
     </form>

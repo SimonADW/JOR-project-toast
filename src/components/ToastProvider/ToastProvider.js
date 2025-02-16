@@ -1,16 +1,18 @@
 import React from 'react';
-import useEscapeKey from '../../hooks/useEscapeKey';
+import useKeydown from '../../hooks/useKeydown';
 
 export const ToastContext = React.createContext();
 
 export const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastProvider({ children }) {  
-  const [isVisible, setIsVisible] = React.useState(false);
   const [toasts, setToasts] = React.useState([]);
+
   // Clear all toasts on Escape press
-  const { listenForEscape } = useEscapeKey();  
-  listenForEscape(setToasts, []);
+  const handleEscape = React.useCallback(()=> {
+    setToasts([]);
+  })
+  useKeydown("Escape", handleEscape);
 
   // Create new toast an "push" to toasts array
   function handleNewToast(toastVariant, message) {
@@ -27,8 +29,6 @@ function ToastProvider({ children }) {
   return (
     <ToastContext.Provider
       value={{ 
-        isVisible, 
-        setIsVisible,
         toasts,
         handleNewToast,    
         handleDismiss,    
